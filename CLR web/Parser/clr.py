@@ -269,7 +269,7 @@ def main(grammars=None, Input=None):
     print("\n", sr, "s/r conflicts |", rr, "r/r conflicts")
     print('_____________________________________________________________________')
     print("Enter the string to be parsed")
-    # Input=input()+'$'
+    # Input=Input+'$'
     try:
         input_test = list()
         stack=['0']
