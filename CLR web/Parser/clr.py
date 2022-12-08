@@ -28,8 +28,10 @@ class Item(str):
         return self
 
     def __str__(self):
-        return super(Item, self).__str__()+", "+'|'.join(self.lookahead)
+        return super(Item, self).__str__()+"; "+'|'.join(self.lookahead)
         
+    def __repr__(self):
+        return super(Item, self).__str__()+"; "+'|'.join(self.lookahead)
 
 def closure(items):
 
@@ -241,16 +243,16 @@ def main(grammars=None, Input=None):
     print('_____________________________________________________________________')
     print('\t|  ','\t|  '.join(sym_list),'\t\t|')
     print('_____________________________________________________________________')
-    clr_items = list()
+    clr_items = dict()
     for i, j in table.items():
           
         print(i, "\t|  ", '\t|  '.join(list(j.get(sym,' ') if type(j.get(sym))in (str , None) else next(iter(j.get(sym,' ')))  for sym in sym_list)),'\t\t|')
         _ = [i, "#", '#'.join(list(j.get(sym,' ') if type(j.get(sym))in (str , None) else next(iter(j.get(sym,' ')))  for sym in sym_list)),'#']
-        clr_items.append(_)
-        # action = _[2].split('#')
-        # clr_items[i].append(_[0])
-        # for s in action:
-        #     clr_items[i].append(s)
+
+        action = _[2].split('#')
+        clr_items[f'{i}'] = []
+        for state in action:
+            clr_items[f'{i}'].append(state)
 
         s, r=0, 0
 
@@ -268,8 +270,8 @@ def main(grammars=None, Input=None):
     print('_____________________________________________________________________')
     print("Enter the string to be parsed")
     # Input=input()+'$'
-    # Input = "eed"
     try:
+        input_test = list()
         stack=['0']
         a=list(table.items())
         '''print(a[int(stack[-1])][1][Input[0]])
@@ -279,6 +281,7 @@ def main(grammars=None, Input=None):
         print("productions\t:",production_list)
         print('stack',"\t \t\t \t",'Input')
         print(*stack,"\t \t\t \t",*Input,sep="")
+        input_test.append([''.join(Input), ''.join(stack)])
         while(len(Input)!=0):
             b=list(a[int(stack[-1])][1][Input[0]])
             if(b[0][0]=="s" ):
@@ -287,6 +290,7 @@ def main(grammars=None, Input=None):
                 stack.append(b[0][1:])
                 Input=Input[1:]
                 print(*stack,"\t \t\t \t",*Input,sep="")
+                input_test.append([''.join(Input), ''.join(stack)])
             elif(b[0][0]=="r" ):
                 s=int(b[0][1:])
                 #print(len(production_list),s)
@@ -301,15 +305,17 @@ def main(grammars=None, Input=None):
                 stack+=list(prod[0])
                 stack.append(s)
                 print(*stack,"\t \t\t \t",*Input,sep="")
+                input_test.append([''.join(Input), ''.join(stack)])
             elif(b[0][0]=="a"):
                 print("\n\tString Accepted\n")
                 break
     except:
         print('\n\tString INCORRECT for given Grammar!\n')
+        return "False"
         # del tl, t_list  
         # production_list = list()
         # nt_list, t_list=[], []
-    print(f"{production_list=}")
+    # print(f"{production_list=}")
     _items = items
     items = {}
     ctr = 0
@@ -320,7 +326,7 @@ def main(grammars=None, Input=None):
         ctr+=1
      
     print(clr_items)
-    return items, sym_list, clr_items, goto_list, first_list, follow_list
+    return items, sym_list, clr_items, goto_list, first_list, follow_list, input_test
 
 if __name__=="__main__":
     main()

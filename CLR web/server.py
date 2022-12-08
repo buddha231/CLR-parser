@@ -25,7 +25,7 @@ def hello_world():
         # string.append('')
         global production_list, tl, ntl, nt_list, t_list, first_list, follow_list
 
-        items, sym_list, clr_items, goto_list, first_list, follow_list = main(grammars=string)
+        items, sym_list, clr_items, goto_list, first_list, follow_list, input_test = main(grammars=string)
         # print(f"{_items}")
         print(f"{items=}")
         production_list, nt_list, t_list = list(), list(), list()
@@ -33,6 +33,8 @@ def hello_world():
         print(string)
         print(goto_list)
         print(ntl.keys)
-        return render_template('cannonical.html', dictionary=items, symbols= sym_list,goto_list=goto_list, first_list= first_list, follow_list= follow_list )
+        return render_template('cannonical.html', dictionary=items, symbols= sym_list,goto_list=goto_list, first_list= first_list, follow_list= follow_list, input_test = input_test )
     return render_template('cannonical.html', hello="world")
         
+
+

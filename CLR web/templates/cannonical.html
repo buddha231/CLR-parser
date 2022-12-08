@@ -84,8 +84,7 @@
                       <td>{{key}}</td>
                       <td>{{dictionary[key]}}</td>
                     </tr>
-                    {% endfor %}
-                    
+                  {% endfor %}
                   </tbody>
                 </table>
           </div>
@@ -138,8 +137,8 @@
                   <div class="table table-responsive">
                       <table class="table">
                           <tr>
-                              <th rowspan="2">State</th>
-                              <th colspan="4">Action</th>
+                              <th rowspan="2">Action</th>
+                              <th colspan="4">state</th>
                               <th colspan="4">Goto</th>
                           </tr> 
                           <tr>
@@ -154,39 +153,15 @@
                               <th>R</th> -->
                             {% endfor %}
                           </tr>
+                          {% for items in clr_items%}
+                            <tr>
+                              <td>{{items}}</td>
+                              {% for item in clr_items[items] %}
+                                <td>{{item}}</td>
+                              {% endfor %}
+                            </tr>
                           <tr>
-                              <td>0</td>
-                              <td></td>
-                              <td>s4</td>
-                              <td>s5</td>
-                              <td></td>
-                              <td></td>
-                              <td>1</td>
-                              <td>2</td>
-                              <td>3</td>
-                          </tr>
-                          <tr>
-                              <td>1</td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td>acc</td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                          </tr>
-                          <tr>
-                              <td>2</td>
-                              <td>s6</td>
-                              <td></td>
-                              <td></td>
-                              <td>r5</td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                          </tr>
+                          {% endfor %}
   
                       </table>
                   </div>
@@ -201,12 +176,14 @@
                               <th>Input</th>
                               <th>Action</th>
                           </tr>
+                          {% for test in input_test %}
                           <tr>
                               <td>1</td>	
-                              <td>0</td>	
-                              <td>id = * id $</td>	
+                                <td>{{test[0]}}</td>	
+                                <td>{{test[1]}}</td>	
                               <td>s5</td>
                           </tr>
+                          {% endfor %}
                         </table>
                   </div>
               </div>
