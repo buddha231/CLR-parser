@@ -27,7 +27,10 @@ class Item(str):
         return self
 
     def __str__(self):
-        return super(Item, self).__str__()+", "+'|'.join(self.lookahead)
+        return super(Item, self).__str__()+"; "+'|'.join(self.lookahead)
+
+    def __repr__(self):
+        return super(Item, self).__str__()+"; "+'|'.join(self.lookahead)
         
 
 def closure(items):
@@ -220,6 +223,7 @@ def main(grammars=None):
 
     j=calc_states()
 
+    items = j.copy()
     ctr=0
     for s in j:
         print("Item{}:".format(ctr))
@@ -298,6 +302,15 @@ def main(grammars=None):
                 break
     except:
         print('\n\tString INCORRECT for given Grammar!\n')
+    _items = items
+    items = {}
+    ctr = 0
+
+    for item in _items:
+        items[f"{ctr}"] = list()
+        for closure in item:
+            items[f"{ctr}"].append(closure)
+        ctr+=1
     return 
 
 if __name__=="__main__":

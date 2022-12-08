@@ -26,8 +26,10 @@ class Item(str):
         return self
 
     def __str__(self):
-        return super(Item, self).__str__()+", "+'|'.join(self.lookahead)
+        return super(Item, self).__str__()+"; "+'|'.join(self.lookahead)
         
+    def __repr__(self):
+        return super(Item, self).__str__()+"; "+'|'.join(self.lookahead)
 
 def closure(items):
 
@@ -265,8 +267,8 @@ def main(grammars=None, Input=None):
     print('_____________________________________________________________________')
     print("Enter the string to be parsed")
     # Input=input()+'$'
-    # Input = "eed"
     try:
+        input_test = list()
         stack=['0']
         a=list(table.items())
         '''print(a[int(stack[-1])][1][Input[0]])
@@ -276,6 +278,7 @@ def main(grammars=None, Input=None):
         print("productions\t:",production_list)
         print('stack',"\t \t\t \t",'Input')
         print(*stack,"\t \t\t \t",*Input,sep="")
+        input_test.append([''.join(Input), ''.join(stack)])
         while(len(Input)!=0):
             b=list(a[int(stack[-1])][1][Input[0]])
             if(b[0][0]=="s" ):
@@ -284,6 +287,7 @@ def main(grammars=None, Input=None):
                 stack.append(b[0][1:])
                 Input=Input[1:]
                 print(*stack,"\t \t\t \t",*Input,sep="")
+                input_test.append([''.join(Input), ''.join(stack)])
             elif(b[0][0]=="r" ):
                 s=int(b[0][1:])
                 #print(len(production_list),s)
@@ -298,15 +302,17 @@ def main(grammars=None, Input=None):
                 stack+=list(prod[0])
                 stack.append(s)
                 print(*stack,"\t \t\t \t",*Input,sep="")
+                input_test.append([''.join(Input), ''.join(stack)])
             elif(b[0][0]=="a"):
                 print("\n\tString Accepted\n")
                 break
     except:
         print('\n\tString INCORRECT for given Grammar!\n')
+        return "False"
         # del tl, t_list  
         # production_list = list()
         # nt_list, t_list=[], []
-    print(f"{production_list=}")
+    # print(f"{production_list=}")
     _items = items
     items = {}
     ctr = 0
@@ -316,8 +322,9 @@ def main(grammars=None, Input=None):
             items[f"{ctr}"].append(closure)
         ctr+=1
      
-    print(clr_items)
-    return items, sym_list, clr_items, goto_list 
+    # print(clr_items)
+    # print(input_test)
+    return items, sym_list, clr_items, goto_list, input_test 
 
 if __name__=="__main__":
     main()

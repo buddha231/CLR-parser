@@ -78,8 +78,7 @@
                       <td>{{key}}</td>
                       <td>{{dictionary[key]}}</td>
                     </tr>
-                    {% endfor %}
-                    
+                  {% endfor %}
                   </tbody>
                 </table>
           </div>
@@ -147,12 +146,14 @@
                               <th>Input</th>
                               <th>Action</th>
                           </tr>
+                          {% for test in input_test %}
                           <tr>
                               <td>1</td>	
-                              <td>0</td>	
-                              <td>id = * id $</td>	
+                                <td>{{test[0]}}</td>	
+                                <td>{{test[1]}}</td>	
                               <td>s5</td>
                           </tr>
+                          {% endfor %}
                         </table>
                   </div>
               </div>
