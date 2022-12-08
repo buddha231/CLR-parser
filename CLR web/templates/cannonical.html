@@ -72,11 +72,13 @@
                     </tr>
                   </thead>
                   <tbody>
+                  {% for key in dictionary %}
                     <tr>
                       <th></th>
-                      <td>1</td>
-                      <td>{[S' -> .S, $]; [S -> .C C, $]; [C -> .c C, c/d]; [C -> .d, c/d]}</td>
+                      <td>{{key}}</td>
+                      <td>{{dictionary[key]}}</td>
                     </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
           </div>
@@ -110,14 +112,16 @@
                               <th colspan="4">Goto</th>
                           </tr> 
                           <tr>
-                              <th>=</th>
-                              <th>*</th>
+                            {% for symbol in symbols%}
+                              <th>{{symbol}}</th>
+                              <!-- <th>*</th>
                               <th>id</th>
                               <th>$</th>
                               <th>S'</th>
                               <th>S</th>
                               <th>L</th>
-                              <th>R</th>
+                              <th>R</th> -->
+                            {% endfor %}
                           </tr>
                           <tr>
                               <td>0</td>

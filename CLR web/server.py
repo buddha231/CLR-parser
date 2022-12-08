@@ -2,7 +2,7 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, Flask
 )
-
+# from Parser.firstfollow import State
 from Parser.clr import main
 # from Parser import firstfollow
 from Parser.firstfollow import production_list, nt_list as ntl, t_list as tl
@@ -20,10 +20,12 @@ def hello_world():
         # string.append('')
         global production_list, tl, ntl, nt_list, t_list
 
-        main(grammars=string)
+        items, sym_list, clr_items = main(grammars=string)
+        # print(f"{_items}")
+        print(f"{items=}")
         production_list, nt_list, t_list = list(), list(), list()
         tl, ntl  = dict(), dict()
         print(string)
-        return render_template('cannonical.html', hello=string)
+        return render_template('cannonical.html', dictionary=items, symbols= sym_list)
     return render_template('cannonical.html', hello="world")
         

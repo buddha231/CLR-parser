@@ -232,10 +232,15 @@ def main(grammars=None):
     print('_____________________________________________________________________')
     print('\t|  ','\t|  '.join(sym_list),'\t\t|')
     print('_____________________________________________________________________')
+    clr_items = list()
     for i, j in table.items():
             
         print(i, "\t|  ", '\t|  '.join(list(j.get(sym,' ') if type(j.get(sym))in (str , None) else next(iter(j.get(sym,' ')))  for sym in sym_list)),'\t\t|')
-        s, r=0, 0
+        _ = [i, "#", '#'.join(list(j.get(sym,' ') if type(j.get(sym))in (str , None) else next(iter(j.get(sym,' ')))  for sym in sym_list)),'#']
+        action = _[2].split('#')
+        clr_items[i].append(_[0])
+        for s in action:
+            clr_items[i].append(s)
 
         for p in j.values():
             if p!='accept' and len(p)>1:

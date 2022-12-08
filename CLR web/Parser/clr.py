@@ -220,7 +220,7 @@ def main(grammars=None, Input=None):
     print(t_list)
 
     j=calc_states()
-
+    items = j.copy()
     ctr=0
     for s in j:
         print("Item{}:".format(ctr))
@@ -236,9 +236,17 @@ def main(grammars=None, Input=None):
     print('_____________________________________________________________________')
     print('\t|  ','\t|  '.join(sym_list),'\t\t|')
     print('_____________________________________________________________________')
+    clr_items = list()
     for i, j in table.items():
-            
+          
         print(i, "\t|  ", '\t|  '.join(list(j.get(sym,' ') if type(j.get(sym))in (str , None) else next(iter(j.get(sym,' ')))  for sym in sym_list)),'\t\t|')
+        _ = [i, "#", '#'.join(list(j.get(sym,' ') if type(j.get(sym))in (str , None) else next(iter(j.get(sym,' ')))  for sym in sym_list)),'#']
+        clr_items.append(_)
+        # action = _[2].split('#')
+        # clr_items[i].append(_[0])
+        # for s in action:
+        #     clr_items[i].append(s)
+
         s, r=0, 0
 
         for p in j.values():
@@ -297,7 +305,17 @@ def main(grammars=None, Input=None):
         # production_list = list()
         # nt_list, t_list=[], []
     print(f"{production_list=}")
-    return
+    _items = items
+    items = {}
+    ctr = 0
+    for item in _items:
+        items[f"{ctr}"] = list()
+        for closure in item:
+            items[f"{ctr}"].append(closure)
+        ctr+=1
+     
+    print(clr_items)
+    return items, sym_list, clr_items 
 
 if __name__=="__main__":
     main()
