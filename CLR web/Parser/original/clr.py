@@ -206,6 +206,7 @@ def main(grammars=None):
         print(nt)
         print("\tFirst:\t", firstfollow.get_first(nt))
         print("\tFollow:\t", firstfollow.get_follow(nt), "\n")  
+        
     
 
     augment_grammar()
@@ -232,16 +233,18 @@ def main(grammars=None):
     print('_____________________________________________________________________')
     print('\t|  ','\t|  '.join(sym_list),'\t\t|')
     print('_____________________________________________________________________')
-    clr_items = list()
+    clr_items = dict()
     for i, j in table.items():
             
         print(i, "\t|  ", '\t|  '.join(list(j.get(sym,' ') if type(j.get(sym))in (str , None) else next(iter(j.get(sym,' ')))  for sym in sym_list)),'\t\t|')
         _ = [i, "#", '#'.join(list(j.get(sym,' ') if type(j.get(sym))in (str , None) else next(iter(j.get(sym,' ')))  for sym in sym_list)),'#']
-        action = _[2].split('#')
-        clr_items[i].append(_[0])
-        for s in action:
-            clr_items[i].append(s)
 
+        action = _[2].split('#')
+        clr_items[f'{i}'] = []
+        for state in action:
+            clr_items[f'{i}'].append(state)
+
+        s, r=0, 0
         for p in j.values():
             if p!='accept' and len(p)>1:
                 p=list(p)

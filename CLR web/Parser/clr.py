@@ -236,16 +236,16 @@ def main(grammars=None, Input=None):
     print('_____________________________________________________________________')
     print('\t|  ','\t|  '.join(sym_list),'\t\t|')
     print('_____________________________________________________________________')
-    clr_items = list()
+    clr_items = dict()
     for i, j in table.items():
           
         print(i, "\t|  ", '\t|  '.join(list(j.get(sym,' ') if type(j.get(sym))in (str , None) else next(iter(j.get(sym,' ')))  for sym in sym_list)),'\t\t|')
         _ = [i, "#", '#'.join(list(j.get(sym,' ') if type(j.get(sym))in (str , None) else next(iter(j.get(sym,' ')))  for sym in sym_list)),'#']
-        clr_items.append(_)
-        # action = _[2].split('#')
-        # clr_items[i].append(_[0])
-        # for s in action:
-        #     clr_items[i].append(s)
+
+        action = _[2].split('#')
+        clr_items[f'{i}'] = []
+        for state in action:
+            clr_items[f'{i}'].append(state)
 
         s, r=0, 0
 

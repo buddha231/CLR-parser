@@ -21,11 +21,10 @@ def hello_world():
         global production_list, tl, ntl, nt_list, t_list
 
         items, sym_list, clr_items = main(grammars=string)
-        # print(f"{_items}")
-        print(f"{items=}")
+        print(f'{clr_items}')
         production_list, nt_list, t_list = list(), list(), list()
         tl, ntl  = dict(), dict()
         print(string)
-        return render_template('cannonical.html', dictionary=items, symbols= sym_list)
+        return render_template('cannonical.html', dictionary=items, symbols= sym_list, clr_items=clr_items)
     return render_template('cannonical.html', hello="world")
         
