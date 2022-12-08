@@ -10,6 +10,8 @@ else:
 
 nt_list, t_list=[], []
 goto_list = list()
+first_list = dict()
+follow_list = dict()
 
 class State:
 
@@ -212,7 +214,8 @@ def main(grammars=None, Input=None):
         print(nt)
         print("\tFirst:\t", firstfollow.get_first(nt))
         print("\tFollow:\t", firstfollow.get_follow(nt), "\n")  
-    
+        first_list[nt] = firstfollow.get_first(nt)
+        follow_list[nt] = firstfollow.get_follow(nt)
 
     augment_grammar()
     nt_list=list(ntl.keys())
@@ -317,7 +320,7 @@ def main(grammars=None, Input=None):
         ctr+=1
      
     print(clr_items)
-    return items, sym_list, clr_items, goto_list 
+    return items, sym_list, clr_items, goto_list, first_list, follow_list
 
 if __name__=="__main__":
     main()
