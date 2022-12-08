@@ -2,7 +2,6 @@ from collections import deque
 from collections import OrderedDict
 from pprint import pprint
 
-from numpy import append
 if __name__ == '__main__':
     import firstfollow
     from firstfollow import production_list, nt_list as ntl, t_list as tl
@@ -264,7 +263,7 @@ def main(grammars=None):
     print("\n", sr, "s/r conflicts |", rr, "r/r conflicts")
     print('_____________________________________________________________________')
     print("Enter the string to be parsed")
-    Input=input()+'$'
+    Input=Input+'$'
     try:
         stack=['0']
         a=list(table.items())

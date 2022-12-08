@@ -8,14 +8,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
-      td, th {
-        padding: 5px !important;
-      }
       *{
         box-sizing: border-box;
       }
       td, th{
-        padding: 5px !important;
+        padding: 5px 15px !important;
+      }
+      .tr {
+        background-color: #F4701F !important;
       }
       /* Extra large devices (large laptops and desktops, 1200px and up) */
       @media only screen and (max-width: 1200px) {
@@ -58,7 +58,6 @@
 
   </header>
   <body>
-    <div class="alert alert-warning" style="position: absolute;"></div>
     <main class="d-flex p-2 p-lg-5">
       <aside class="d-block d-flex pr-lg-5 pr-0" style="background-color: white; height: 100px; padding: 0px; width: 20%; flex-direction: column;">
         <img src="/static/Group_1.png" alt="" style="position: absolute; left:0; top: 0; height: 150px">
@@ -68,14 +67,16 @@
             <textarea placeholder="Enter grammar" class="form-control" id="grammar" name="grammar"></textarea>
           </div>
           <input type="submit"  class="btn btn-success my-4" value="Generate"/>
-        </form>
-        <form>
           <div class="form-group">
             <label for="input">Input</label>
             <input type="text" placeholder="Input of strings" class="form-control" id="input" name="string" style="padding: 0;"></textarea>
           </div>
           <input type="submit"  class="btn btn-success my-4" value="Test"/>
         </form>
+        <p style="font-size:18px;">
+          SS Conflict<br>
+          RR Conflict
+        </p>
       </aside>
       <div class="main__container" style="width: 80%;">
           <div class="table table-responsive">
@@ -99,7 +100,8 @@
                 </table>
           </div>
           <div class="tables d-flex justify-content-between">
-              <div class="table-1">
+            <div class="d-flex" style="flex-direction: column">
+              <div class="">
                   <h3 class="text-center">First Table</h3>
                   <div class="table table-responsive">
                       <table class="table">
@@ -120,14 +122,14 @@
                         </table>
                   </div>
               </div>
-                <div class="table-1">
+                <div class="">
                     <h3 class="text-center">Follow Table</h3>
                     <div class="table table-responsive">
                         <table class="table">
                             <thead>
                               <tr>
                                 <th>Non-terminal</th>
-                                <th>FOLLOW</th>
+                                <th>Follow</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -141,7 +143,8 @@
                           </table>
                     </div>
                 </div>
-              <div class="table-2">
+            </div>
+              <div class="">
                   <h3 class="text-center">Parse Table</h3>
                   <div class="table table-responsive">
                       <table class="table">
@@ -175,7 +178,7 @@
                       </table>
                   </div>
               </div>
-              <div class="table-3">
+              <div class="">
                   <h3 class="text-center">Input testing</h3>
                   <div class="table table-responsive">
                       <table class="table">
@@ -199,6 +202,7 @@
           </div>
       </div>
     </main>
+    <div class="alert alert-danger" style="z-index: 1000; position: absolute; bottom: 0; width: 100%;">This is a primary alert—check it out!</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -22,6 +22,7 @@ def hello_world():
     if request.method == 'POST':
         string = request.form['grammar'].replace("\r", "").split("\n")
         to_parse = request.form['string']
+        print(request.form)
         # string.append('')
         global production_list, tl, ntl, nt_list, t_list, first_list, follow_list
 
@@ -33,8 +34,5 @@ def hello_world():
         print(string)
         print(goto_list)
         print(ntl.keys)
-        return render_template('cannonical.html', dictionary=items, symbols= sym_list,goto_list=goto_list, first_list= first_list, follow_list= follow_list, input_test = input_test )
+        return render_template('cannonical.html', dictionary=items,clr_items= clr_items, symbols= sym_list,goto_list=goto_list, first_list= first_list, follow_list= follow_list, input_test = input_test )
     return render_template('cannonical.html', hello="world")
-        
-
-j

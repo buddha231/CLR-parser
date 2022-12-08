@@ -269,7 +269,8 @@ def main(grammars=None, Input=None):
     print("\n", sr, "s/r conflicts |", rr, "r/r conflicts")
     print('_____________________________________________________________________')
     print("Enter the string to be parsed")
-    # Input=input()+'$'
+    # Input=Input+'$'
+    print(f"{Input=}")
     try:
         input_test = list()
         stack=['0']
@@ -322,7 +323,8 @@ def main(grammars=None, Input=None):
     for item in _items:
         items[f"{ctr}"] = list()
         for closure in item:
-            items[f"{ctr}"].append(closure)
+            items
+            [f"{ctr}"].append(closure)
         ctr+=1
      
     print(clr_items)
