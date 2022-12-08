@@ -28,7 +28,7 @@ def hello_world():
         # string.append('')
         global production_list, tl, ntl, nt_list, t_list, first_list, follow_list
 
-        items, sym_list, clr_items, goto_list, first_list, follow_list, input_test, string_validity = main(
+        items, sym_list, clr_items, goto_list, first_list, follow_list, input_test, string_validity, conflict = main(
             grammars=string, Input=to_parse)
         print(f"{items=}")
         return render_template('cannonical.html',
@@ -40,6 +40,7 @@ def hello_world():
                                follow_list=follow_list,
                                input_test=input_test,
                                grammar=grammar,
-                               string_validity=string_validity
+                               string_validity=string_validity,
+                               conflict=conflict
                                )
     return render_template('cannonical.html', hello="world")

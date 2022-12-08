@@ -300,7 +300,6 @@ def main(grammars=None, Input=None):
     print('_____________________________________________________________________')
     print("Enter the string to be parsed")
     Input = Input+'$'
-
     try:
         input_test = list()
         stack = ['0']
@@ -354,11 +353,14 @@ def main(grammars=None, Input=None):
             items[f"{ctr}"].append(closure)
         ctr += 1
 
+    conflict = {"sr": sr, "rr": rr}
+
     # print(items)
     # print(clr_items)
-    return items, sym_list, clr_items, goto_list, first_list, follow_list, input_test, string_validity
+    return items, sym_list, clr_items, goto_list, first_list, follow_list, input_test, string_validity, conflict
 
 
 if __name__ == "__main__":
     # main(grammars=['S->CC', 'C->cC', 'C->d'])
-    main(grammars=["E ->E+T", "E->T", "T->T*F", "T->F", "F ->(E)", "F->id"])
+    main(grammars=["E ->E+T", "E->T", "T->T*F",
+         "T->F", "F ->(E)", "F->"], Input="x*x+x")
