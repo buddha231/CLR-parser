@@ -1,6 +1,8 @@
 from collections import deque
 from collections import OrderedDict
 from pprint import pprint
+
+from numpy import append
 if __name__ == '__main__':
     import firstfollow
     from firstfollow import production_list, nt_list as ntl, t_list as tl
@@ -9,7 +11,7 @@ else:
     from .firstfollow import production_list, nt_list as ntl, t_list as tl
 
 nt_list, t_list=[], []
-
+goto_list = list()
 class State:
 
     _id=0
@@ -69,7 +71,6 @@ def closure(items):
     return items
 
 def goto(items, symbol):
-
     global production_list
     initial=[]
 
@@ -109,23 +110,24 @@ def calc_states():
     
     while True:
         flag=0
+        index = 0
+
         for s in states:
-
             for e in nt_list+t_list:
-                
                 t=goto(s, e)
-                if t == [] or contains(states, t): continue
-
+                if t == [] : continue
+                goto_list.append(f'GOTO{(index,e)}')
+                if contains(states, t): continue
                 states.append(t)
                 flag=1
+            index+=1                
 
         if not flag: break
-    
     return states 
 
 
 def make_table(states):
-
+    print(goto_list)
     global nt_list, t_list
 
     def getstateno(t):

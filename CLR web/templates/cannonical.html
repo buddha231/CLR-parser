@@ -74,11 +74,12 @@
                   <tbody>
                   {% for key in dictionary %}
                     <tr>
-                      <th></th>
+                      <td>{{goto_list[loop.index0]}}</td>
                       <td>{{key}}</td>
                       <td>{{dictionary[key]}}</td>
                     </tr>
                     {% endfor %}
+                    
                   </tbody>
                 </table>
           </div>

@@ -9,6 +9,7 @@ else:
     from .firstfollow import production_list, nt_list as ntl, t_list as tl
 
 nt_list, t_list=[], []
+goto_list = list()
 
 class State:
 
@@ -109,15 +110,16 @@ def calc_states():
     
     while True:
         flag=0
+        index = 0
         for s in states:
-
             for e in nt_list+t_list:
-                
                 t=goto(s, e)
-                if t == [] or contains(states, t): continue
-
+                if t == [] : continue
+                goto_list.append(f'GOTO{(index,e)}')
+                if contains(states, t): continue
                 states.append(t)
                 flag=1
+            index+=1   
 
         if not flag: break
     
@@ -315,7 +317,7 @@ def main(grammars=None, Input=None):
         ctr+=1
      
     print(clr_items)
-    return items, sym_list, clr_items 
+    return items, sym_list, clr_items, goto_list 
 
 if __name__=="__main__":
     main()
