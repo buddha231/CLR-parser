@@ -2,7 +2,6 @@ from collections import deque
 from collections import OrderedDict
 from pprint import pprint
 
-from numpy import append
 if __name__ == '__main__':
     import firstfollow
     from firstfollow import production_list, nt_list as ntl, t_list as tl
