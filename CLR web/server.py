@@ -35,11 +35,3 @@ def hello_world():
         print(ntl.keys)
         return render_template('cannonical.html', dictionary=items,clr_items= clr_items, symbols= sym_list,goto_list=goto_list, first_list= first_list, follow_list= follow_list, input_test = input_test )
     return render_template('cannonical.html', hello="world")
-        
-
-
-<<<<<<< HEAD
-        return render_template('cannonical.html', dictionary=items, symbols= sym_list, goto_list=goto_list, clr_items = clr_items, input_test=input_test)
-    return render_template('cannonical.html') 
-=======
->>>>>>> 133a628758575bdeace11bfc4d7ccdadef8d040a
