@@ -8,6 +8,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
+      td, th {
+        padding: 5px !important;
+      }
       *{
         box-sizing: border-box;
       }
@@ -56,8 +59,8 @@
   </header>
   <body>
     <main class="d-flex p-2 p-lg-5">
-      <aside class="d-block d-flex pr-lg-5 pr-0" style="background-color: white; height: 100px; padding: 0px; width: 30%; flex-direction: column;">
-        <img src="Group 1.png" alt="" style="position: absolute; left:0; top: 0; height: 150px">
+      <aside class="d-block d-flex pr-lg-5 pr-0" style="background-color: white; height: 100px; padding: 0px; width: 20%; flex-direction: column;">
+        <img src="/static/Group_1.png" alt="" style="position: absolute; left:0; top: 0; height: 150px">
         <form action="" method="POST">
           <div class="form-group grammar" style="margin-top: 130px">
             <label for="grammar">Grammar</label>
@@ -68,12 +71,12 @@
         <form>
           <div class="form-group">
             <label for="input">Input</label>
-            <input type="text" placeholder="Input of strings" class="form-control" id="input" name="string"></textarea>
+            <input type="text" placeholder="Input of strings" class="form-control" id="input" name="string" style="padding: 0;"></textarea>
           </div>
           <input type="submit"  class="btn btn-success my-4" value="Test"/>
         </form>
       </aside>
-      <div class="main__container" style="width: 70%;">
+      <div class="main__container" style="width: 80%;">
           <div class="table table-responsive">
               <table class="table">
                   <thead>
@@ -106,14 +109,38 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {% for nt in first_list %}
                             <tr>
-                              <td>S'</td>
-                              <td>{}</td>
+                              <td>{{nt }}</td>
+                              <td>{{first_list[nt]}}</td>
                             </tr>
+                            {% endfor %}
                           </tbody>
                         </table>
                   </div>
               </div>
+              <div class="tables d-flex justify-content-between">
+                <div class="table-1">
+                    <h3 class="text-center">Follow Table</h3>
+                    <div class="table table-responsive">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Non-terminal</th>
+                                <th>FOLLOW</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for nt in follow_list %}
+                              <tr>
+                                <td>{{nt }}</td>
+                                <td>{{follow_list[nt]}}</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
               <div class="table-2">
                   <h3 class="text-center">Parse Table</h3>
                   <div class="table table-responsive">
