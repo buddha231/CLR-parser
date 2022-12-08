@@ -11,6 +11,9 @@
       *{
         box-sizing: border-box;
       }
+      td, th{
+        padding: 5px !important;
+      }
       /* Extra large devices (large laptops and desktops, 1200px and up) */
       @media only screen and (max-width: 1200px) {
         main {
@@ -38,6 +41,12 @@
         .grammar {
           margin-top: 0 !important;
         }
+        form {
+          display: flex;
+        }
+        .btn {
+          margin-right: 5px !important;
+        }
       }
     </style>
     <title>Cannonical LR Parser</title>
@@ -54,11 +63,14 @@
             <label for="grammar">Grammar</label>
             <textarea placeholder="Enter grammar" class="form-control" id="grammar" name="grammar"></textarea>
           </div>
+          <input type="submit"  class="btn btn-success my-4" value="Generate"/>
+        </form>
+        <form>
           <div class="form-group">
             <label for="input">Input</label>
             <input type="text" placeholder="Input of strings" class="form-control" id="input" name="string"></textarea>
           </div>
-          <input type="submit"  class="btn btn-success my-4" value="Generate"/>
+          <input type="submit"  class="btn btn-success my-4" value="Test"/>
         </form>
       </aside>
       <div class="main__container" style="width: 70%;">

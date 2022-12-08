@@ -21,4 +21,5 @@ def hello_world():
         items, sym_list, clr_items, goto_list, input_test = main(grammars=string, Input=to_parse)
         print(f"{items=}")
 
-        return render_template('cannonical.html', dictionary=items, symbols= sym_list, goto_list=goto_list, clr_items = clr_items, input_test=input_test) 
+        return render_template('cannonical.html', dictionary=items, symbols= sym_list, goto_list=goto_list, clr_items = clr_items, input_test=input_test)
+    return render_template('cannonical.html') 
