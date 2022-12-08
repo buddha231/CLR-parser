@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      /* Extra large devices (large laptops and desktops, 1200px and up) */
+      @media only screen and (max-width: 1200px) {
+        main {
+          flex-direction: column;
+        }
+        .main__container {
+          width: 100% !important;
+        }
+        .main__container .tables{
+          flex-direction: column;
+        }
+        aside {
+          width: 100% !important;
+          flex-direction: row !important;
+          justify-content: space-between !important;
+        }
+        .form-group {
+          width: 100% !important;
+          padding-right: 6px;
+        }
+        img {
+          position: static;
+          visibility: hidden;
+        }
+        .grammar {
+          margin-top: 0 !important;
+        }
+      }
+    </style>
+    <title>Cannonical LR Parser</title>
+  </head>
+  <header>
+
+  </header>
+  <body>
+    <main class="d-flex p-2 p-lg-5">
+      <aside class="d-block d-flex pr-lg-5 pr-0" style="background-color: white; height: 100px; padding: 0px; width: 30%; flex-direction: column;">
+        <img src="Group 1.png" alt="" style="position: absolute; left:0; top: 0; height: 150px">
+        <form action="" method="POST">
+          <div class="form-group grammar" style="margin-top: 130px">
+            <label for="grammar">Grammar</label>
+            <textarea placeholder="Enter grammar" class="form-control" id="grammar" name="grammar"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="input">Input</label>
+            <input type="text" placeholder="Input of strings" class="form-control" id="input" name="string"></textarea>
+          </div>
+          <input type="submit"  class="btn btn-success my-4" value="Generate"/>
+        </form>
+      </aside>
+      <div class="main__container" style="width: 70%;">
+          <div class="table table-responsive">
+              <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Goto</th>
+                      <th>State</th>
+                      <th>Closure</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th></th>
+                      <td>1</td>
+                      <td>{[S' -> .S, $]; [S -> .C C, $]; [C -> .c C, c/d]; [C -> .d, c/d]}</td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+          <div class="tables d-flex justify-content-between">
+              <div class="table-1">
+                  <h3 class="text-center">First Table</h3>
+                  <div class="table table-responsive">
+                      <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Non-terminal</th>
+                              <th>First</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>S'</td>
+                              <td>{}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+              </div>
+              <div class="table-2">
+                  <h3 class="text-center">Parse Table</h3>
+                  <div class="table table-responsive">
+                      <table class="table">
+                          <tr>
+                              <th rowspan="2">State</th>
+                              <th colspan="4">Action</th>
+                              <th colspan="4">Goto</th>
+                          </tr> 
+                          <tr>
+                              <th>=</th>
+                              <th>*</th>
+                              <th>id</th>
+                              <th>$</th>
+                              <th>S'</th>
+                              <th>S</th>
+                              <th>L</th>
+                              <th>R</th>
+                          </tr>
+                          <tr>
+                              <td>0</td>
+                              <td></td>
+                              <td>s4</td>
+                              <td>s5</td>
+                              <td></td>
+                              <td></td>
+                              <td>1</td>
+                              <td>2</td>
+                              <td>3</td>
+                          </tr>
+                          <tr>
+                              <td>1</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>acc</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </tr>
+                          <tr>
+                              <td>2</td>
+                              <td>s6</td>
+                              <td></td>
+                              <td></td>
+                              <td>r5</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </tr>
+  
+                      </table>
+                  </div>
+              </div>
+              <div class="table-3">
+                  <h3 class="text-center">Input testing</h3>
+                  <div class="table table-responsive">
+                      <table class="table">
+                          <tr>
+                              <th>Step</th>
+                              <th>Stack</th>
+                              <th>Input</th>
+                              <th>Action</th>
+                          </tr>
+                          <tr>
+                              <td>1</td>	
+                              <td>0</td>	
+                              <td>id = * id $</td>	
+                              <td>s5</td>
+                          </tr>
+                        </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
