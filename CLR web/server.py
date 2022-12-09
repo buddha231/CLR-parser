@@ -3,6 +3,7 @@ import os
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, Flask
 )
+
 # from Parser.firstfollow import State
 from Parser.clr import main
 # from Parser import firstfollow
@@ -21,10 +22,13 @@ def hello_world():
     string = 'asdf'
 
     if request.method == 'POST':
+        # for element in dir():
+        #     if element[0:2] != "__":
+        #         del globals()[element]
+        # string = 'asdf'
         grammar = request.form['grammar']
         string = grammar.replace("\r", "").split("\n")
         to_parse = request.form['string']
-        print(request.form)
         # string.append('')
         global production_list, tl, ntl, nt_list, t_list, first_list, follow_list
 

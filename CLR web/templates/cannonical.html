@@ -67,10 +67,19 @@
     }
   </style>
   <title>Cannonical LR Parser</title>
+  <script>
+    $(document).ready(function() {
+      // show the alert
+      setTimeout(function() {
+          $(".alert").alert('close');
+      }, 2000);
+  });
+  </script>
 </head>
 <header>
 
 </header>
+
 
 <body>
   <main class="d-flex p-2 p-lg-5">
@@ -225,15 +234,19 @@
       </div>
     </div>
   </main>
-  <div class="alert alert-danger" style="z-index: 1000; position: sticky; bottom: 0; width: 25%;">
-    String
-    {% if string_validity%}
-    accepted
-    {% else %}
-    rejected
-    {% endif %}
+  {% if grammar %}
+  {% if string_validity%}
+  <div class="alert alert-success alert-dismissible fade show" style="z-index: 1000; position: fixed; bottom: 0; left: 0.5%; width: 20%;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    String accepted
   </div>
-
+  {% else %}
+  <div class="alert alert-danger alert-dismissible fade show" style="z-index: 1000; position: fixed; bottom: 0; left: 0.5%; width: 20%;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    String rejected
+  </div>
+  {% endif %}
+  {% endif %}
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
