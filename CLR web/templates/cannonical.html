@@ -61,6 +61,10 @@
         display: flex;
       }
 
+      textarea {
+        font-size: 50. !important;
+      }
+
       .btn {
         margin-right: 5px !important;
       }
@@ -83,9 +87,19 @@
         <div class="form-group grammar" style="margin-top: 130px">
           <label for="grammar">Grammar</label>
           {% if grammar %}
-          <textarea placeholder="Enter grammar" class="form-control" id="grammar" name="grammar"> {{grammar}}</textarea>
+          <textarea placeholder="Enter grammar" class="form-control" id="grammar" name="grammar" rows="8"
+            style="font-size: 20pt"> {{grammar}}</textarea>
           {% else %}
-          <textarea placeholder="Enter grammar" class="form-control" id="grammar" name="grammar"></textarea>
+          <textarea placeholder="Enter grammar" class="form-control" id="grammar" name="grammar" rows="8"
+            style="font-size: 20pt">
+
+S->L=R
+S->R
+L->*R
+L->x
+R->L
+
+          </textarea>
           {% endif %}
         </div>
         <input type="submit" class="btn btn-success my-4" value="Generate" />
@@ -93,10 +107,10 @@
           <label for="input">Input</label>
           {% if input_string %}
           <input type="text" value="{{input_string}}" placeholder="Input of strings" class="form-control" id="input"
-            name="string" style="padding: 0;">
+            name="string" style="padding: 0; font-size: 20pt;">
           {% else %}
           <input type="text" placeholder="Input of strings" class="form-control" id="input" name="string"
-            style="padding: 0;">
+            style="padding: 0;font-size: 20pt">
           {% endif %}
         </div>
         <input type="submit" class="btn btn-success my-4" value="Test" />
@@ -179,9 +193,9 @@
           <div class="table table-responsive">
             <table class="table">
               <tr>
-                <th rowspan="2">Action</th>
-                <th colspan="4">state</th>
-                <th colspan="4">Goto</th>
+                <th rowspan="2">State</th>
+                <th colspan="4">GOTO</th>
+                <th colspan="4">ACTION</th>
               </tr>
               <tr>
                 {% for symbol in symbols%}
@@ -213,10 +227,8 @@
           <div class="table table-responsive">
             <table class="table">
               <tr>
-                <th>Step</th>
                 <th>Stack</th>
                 <th>Input</th>
-                <th>Action</th>
               </tr>
               {% for test in input_test %}
               <tr>
@@ -232,6 +244,36 @@
       </div>
     </div>
   </main>
+  {% if isError %}
+  </div>
+  <div class="alert alert-danger alert-dismissible fade show"
+    style="z-index: 1000; position: fixed; bottom: 0; left: 0.5%; width: 30%;">
+    Oops!! There has been error in the production grammar.
+    Please Try again.
+  </div>
+  {% endif %}
+  <!-- <div class="alert alert-danger" style="z-index: 1000; position: sticky; bottom: 0; width: 25%;">
+    String
+    {% if string_validity%}
+    accepted
+    {% else %}
+    rejected
+    {% endif %}
+    {% if grammar %}
+    {% if string_validity%}
+    <div class="alert alert-success alert-dismissible fade show"
+      style="z-index: 1000; position: fixed; bottom: 0; left: 0.5%; width: 20%;">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      String accepted
+    </div>
+    {% else %}
+    <div class="alert alert-danger alert-dismissible fade show"
+      style="z-index: 1000; position: fixed; bottom: 0; left: 0.5%; width: 20%;">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      String rejected
+    </div>
+    {% endif %}
+    {% endif %} -->
   {% if grammar %}
   {% if string_validity%}
   <div class="alert alert-success alert-dismissible fade show"
