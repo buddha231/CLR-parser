@@ -1,4 +1,6 @@
 
+from curses.ascii import isupper
+from typing import Type
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, Flask
 )
@@ -19,6 +21,7 @@ app = Flask(__name__)
 @app.route("/", methods=("GET", "POST"))
 def hello_world():
     string = 'asdf'
+    isError = False
 
     if request.method == 'POST':
         # for element in dir():
@@ -29,23 +32,43 @@ def hello_world():
         string = grammar.replace("\r", "").split("\n")
         to_parse = request.form['string']
         # string.append('')
-        global production_list, tl, ntl, nt_list, t_list, first_list, follow_list
+        try:
+            if '->' not in grammar:
+                print('production error')
+                raise TypeError('error')
+            else:
+                ctr = 1
+                for i in range(len(grammar)):
+                    head, body=grammar[ctr-1].split('->')
+                    ctr+=1
+                if all(x.isupper() for x in head):
+                    print('grammar error')
+                raise TypeError('error')
+        except:
+            print('ss')
+            isError = True
+            if isError:
+                print('grammar error')
+                return render_template('cannonical.html', hello="world", isError = isError)
+            else:
+                global production_list, tl, ntl, nt_list, t_list, first_list, follow_list
 
-        items, sym_list, clr_items, goto_list, first_list, follow_list, input_test, string_validity, conflict = main(
-            grammars=string, Input=to_parse)
-        print(f'grammar {grammar}')    
-        print(f'variables {dir()}')
-        return render_template('cannonical.html',
-                               dictionary=items,
-                               clr_items=clr_items,
-                               symbols=sym_list,
-                               goto_list=goto_list,
-                               first_list=first_list,
-                               follow_list=follow_list,
-                               input_test=input_test,
-                               grammar=grammar,
-                               string_validity=string_validity,
-                               conflict=conflict
-                               )
-                            
+
+                items, sym_list, clr_items, goto_list, first_list, follow_list, input_test, string_validity, conflict = main(
+                    grammars=string, Input=to_parse)
+                print(f'grammar {grammar}')    
+                print(f'variables {dir()}')
+                return render_template('cannonical.html',
+                                    dictionary=items,
+                                    clr_items=clr_items,
+                                    symbols=sym_list,
+                                    goto_list=goto_list,
+                                    first_list=first_list,
+                                    follow_list=follow_list,
+                                    input_test=input_test,
+                                    grammar=grammar,
+                                    string_validity=string_validity,
+                                    conflict=conflict
+                                    )
+                                
     return render_template('cannonical.html', hello="world")

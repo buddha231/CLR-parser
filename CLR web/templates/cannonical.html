@@ -223,6 +223,12 @@
       </div>
     </div>
   </main>
+  {% if isError %}
+  <div class="alert alert-danger" style="z-index: 1000; position: absolute; top: 0; width: 25%;">
+    Oops!! There has been error in the production grammar.
+    Please Try again.
+  </div>
+  {% endif %}
   <div class="alert alert-danger" style="z-index: 1000; position: absolute; top: 0; width: 25%;">
     String
     {% if string_validity%}
