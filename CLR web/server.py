@@ -43,4 +43,5 @@ def hello_world():
                                string_validity=string_validity,
                                conflict=conflict
                                )
+                            
     return render_template('cannonical.html', hello="world")
