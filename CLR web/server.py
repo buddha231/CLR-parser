@@ -6,12 +6,10 @@ import collections
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, Flask
 )
-# from Parser.firstfollow import State
+
 from Parser.clr import main
-# from Parser import firstfollow
 from Parser.firstfollow import production_list, nt_list as ntl, t_list as tl
 from Parser.clr import nt_list, t_list
-# from CLR_Parser.firstfollow import
 app = Flask(__name__)
 LOGO = os.path.join('static', 'Group_1.png')
 # app.config['UPLOAD_FOLDER'] = LOGO

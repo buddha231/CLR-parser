@@ -72,6 +72,8 @@
 
 </header>
 
+
+
 <body>
   <main class="d-flex p-2 p-lg-5">
     <aside class="d-block d-flex pr-lg-5 pr-0"
@@ -89,8 +91,13 @@
         <input type="submit" class="btn btn-success my-4" value="Generate" />
         <div class="form-group">
           <label for="input">Input</label>
+          {% if input_string %}
+          <input type="text" value="{{input_string}}" placeholder="Input of strings" class="form-control" id="input"
+            name="string" style="padding: 0;">
+          {% else %}
           <input type="text" placeholder="Input of strings" class="form-control" id="input" name="string"
-            style="padding: 0;"></textarea>
+            style="padding: 0;">
+          {% endif %}
         </div>
         <input type="submit" class="btn btn-success my-4" value="Test" />
       </form>
@@ -223,6 +230,7 @@
       </div>
     </div>
   </main>
+<<<<<<< HEAD
   {% if isError %}
   <div class="alert alert-danger" style="z-index: 1000; position: absolute; top: 0; width: 25%;">
     Oops!! There has been error in the production grammar.
@@ -236,8 +244,23 @@
     {% else %}
     rejected
     {% endif %}
+=======
+  {% if grammar %}
+  {% if string_validity%}
+  <div class="alert alert-success alert-dismissible fade show"
+    style="z-index: 1000; position: fixed; bottom: 0; left: 0.5%; width: 20%;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    String accepted
+>>>>>>> refs/remotes/origin/main
   </div>
-
+  {% else %}
+  <div class="alert alert-danger alert-dismissible fade show"
+    style="z-index: 1000; position: fixed; bottom: 0; left: 0.5%; width: 20%;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    String rejected
+  </div>
+  {% endif %}
+  {% endif %}
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -250,5 +273,13 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 </body>
+<script>
+  $(document).ready(function () {
+    // show the alert
+    setTimeout(function () {
+      $(".alert").alert('close');
+    }, 2000);
+  });
+</script>
 
 </html>
