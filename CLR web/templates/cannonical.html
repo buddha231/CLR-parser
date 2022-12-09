@@ -172,9 +172,9 @@
           <div class="table table-responsive">
             <table class="table">
               <tr>
-                <th rowspan="2">Action</th>
-                <th colspan="4">state</th>
-                <th colspan="4">Goto</th>
+                <th rowspan="2">State</th>
+                <th colspan="4">GOTO</th>
+                <th colspan="4">ACTION</th>
               </tr>
               <tr>
                 {% for symbol in symbols%}
@@ -206,10 +206,8 @@
           <div class="table table-responsive">
             <table class="table">
               <tr>
-                <th>Step</th>
                 <th>Stack</th>
                 <th>Input</th>
-                <th>Action</th>
               </tr>
               {% for test in input_test %}
               <tr>

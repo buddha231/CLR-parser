@@ -21,16 +21,20 @@ def hello_world():
     string = 'asdf'
 
     if request.method == 'POST':
+        # for element in dir():
+        #     if element[0:2] != "__":
+        #         del globals()[element]
+        # string = 'asdf'
         grammar = request.form['grammar']
         string = grammar.replace("\r", "").split("\n")
         to_parse = request.form['string']
-        print(request.form)
         # string.append('')
         global production_list, tl, ntl, nt_list, t_list, first_list, follow_list
 
         items, sym_list, clr_items, goto_list, first_list, follow_list, input_test, string_validity, conflict = main(
             grammars=string, Input=to_parse)
-        print(f"{items=}")
+        print(f'grammar {grammar}')    
+        print(f'variables {dir()}')
         return render_template('cannonical.html',
                                dictionary=items,
                                clr_items=clr_items,
