@@ -31,10 +31,10 @@ class Item(str):
         return self
 
     def __str__(self):
-        return super(Item, self).__str__()+"; "+'|'.join(self.lookahead)
+        return super(Item, self).__str__() + "; " + '|'.join(self.lookahead)
 
     def __repr__(self):
-        return super(Item, self).__str__()+"; "+'|'.join(self.lookahead)
+        return super(Item, self).__str__() + "; " + '|'.join(self.lookahead)
 
 
 def closure(items):
