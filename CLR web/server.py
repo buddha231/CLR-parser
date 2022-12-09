@@ -1,13 +1,13 @@
 
 from curses.ascii import isupper
 from typing import Type
+import os
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, Flask
 )
 # from Parser.firstfollow import State
 from Parser.clr import main
 # from Parser import firstfollow
-import os
 from Parser.firstfollow import production_list, nt_list as ntl, t_list as tl
 from Parser.clr import nt_list, t_list
 # from CLR_Parser.firstfollow import
