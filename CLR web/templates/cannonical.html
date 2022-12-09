@@ -94,9 +94,11 @@
         </div>
         <input type="submit" class="btn btn-success my-4" value="Test" />
       </form>
+      {% if conflict%}
       <p style="font-size:18px;">
         SS Conflict - {{conflict['sr']}}<br>
         RR Conflict - {{conflict['rr']}}
+      {% endif %}
       </p>
     </aside>
     <div class="main__container" style="width: 80%;">
@@ -223,7 +225,7 @@
       </div>
     </div>
   </main>
-  <div class="alert alert-danger" style="z-index: 1000; position: absolute; bottom: 0; width: 100%;">
+  <div class="alert alert-danger" style="z-index: 1000; position: absolute; top: 0; width: 25%;">
     String
     {% if string_validity%}
     accepted
